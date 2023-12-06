@@ -1,5 +1,5 @@
 import "./App.css";
-import MyMap from "./components/Main";
+import MyMap from "./components/main/index";
 
 function App() {
   return (

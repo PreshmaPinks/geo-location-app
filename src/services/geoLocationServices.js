@@ -11,10 +11,6 @@ export const getLocation = async (minLong, minLat, maxLong, maxLat) => {
     const domParser = new DOMParser();
     return domParser.parseFromString(osmText, "application/xml");
   } catch (e) {
-    let error = "Something went wrong. Please try again!";
-    if (e instanceof Error) {
-      error = e.message;
-    }
     return Promise.reject(e);
   }
 };

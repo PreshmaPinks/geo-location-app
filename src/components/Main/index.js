@@ -46,7 +46,6 @@ const MyMap = () => {
       const geojson = osmtogeojson(data);
       setGeoJsonData(geojson);
     } catch (e) {
-      //   console.log("e", e.Error);
       setError(e);
     }
   };

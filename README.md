@@ -1,10 +1,12 @@
-# Getting Started with Create React App
+# Getting Started with Geo-Location-App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
 
 ### `npm start`
 
@@ -14,57 +16,29 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+# My Approach
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Firstly I looked at overall requirement and tried to visulize the application. As the openstreetmap API needs a bounding box, I needed a input boxes to get user input for bounding box coordinates.
 
-### `npm run build`
+Then I analyzed the openstreetmap API response and feature objects.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I also researched about the "osmtogeojson" libarary and the format it accepts as an input.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Then I researched about possible options to display geojson dataset. Two options were d3 and react-leaflet. Based on the documentation I decided to use react-leaflet.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I started to code the application.
+I created following components
 
-### `npm run eject`
+1. main - Displays the map and holds geoLocationBox component. Displays all the features on a popup of a marker in the map once users submits the coordinates.
+2. geoLocationBox - Holds four input boxes for minimum longitutude, maximum longitude, minimum latitude, maximum latitude
+3. currentLocation - focuses on the users current location.
+4. geoLocationServices.js - It is a function to make a call to openstreetmap API with bbox coordinates.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Test case
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I was not able to write the test, because jest was throwing an error with respect to current version react-leaflet node module.
+Due to limited time I was not able to try with different react-leaftlet version or another library. If the error is resolved I would write test using react-testing-library for following cases.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Loads the map and displays user location
+2. Loads the features once user submits the bounding box coordinates. I will mock the geoLocation service to return an osm object with features.
+3. Displays the error when user input invalid coordinates.
